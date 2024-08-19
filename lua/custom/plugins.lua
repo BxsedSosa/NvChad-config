@@ -1,5 +1,12 @@
 local plugins = {
   {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function ()
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
     "ngtuonghy/live-server-nvim",
     event = "VeryLazy",
     build = "LiveServerInstall",
@@ -47,7 +54,7 @@ local plugins = {
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui"
     },
-    config = function (_, opts)
+    config = function (_, _)
       local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
     end,
@@ -77,6 +84,7 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "rust-analyzer",
         "clangd",
         "clang-format",
         "codelldb",
@@ -94,6 +102,8 @@ local plugins = {
   {
     "windwp/nvim-ts-autotag",
     ft = {
+      "tsx",
+      "html",
       "javascript",
       "javascriptreact",
       "typescript",
